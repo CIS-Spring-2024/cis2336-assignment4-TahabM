@@ -224,3 +224,18 @@ button[type="submit"]:hover {
 .gallery-item img:hover {
     transform: scale(1.1);
 }
+.gallery-container {
+    display: flex;
+    justify-content: center;
+}
+
+.gallery-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px; 
+}
+
+.gallery-item {
+    margin-bottom: 20px; 
+}
