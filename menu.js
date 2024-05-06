@@ -30,42 +30,31 @@ function displayMenuItems() {
 function handleSubmit(event) {
     event.preventDefault();
 
-    let formData = new FormData();
+    const orderedItems = [];
 
     menuItems.forEach(item => {
         const quantityInput = document.getElementById(`${item.name.replace(/\s+/g, '-').toLowerCase()}-quantity`);
         const quantity = parseInt(quantityInput.value);
 
         if (quantity > 0 && quantity <= 10) {
-            formData.append(item.name, quantity);
+            orderedItems.push({ name: item.name, quantity });
         } else if (quantity > 10) {
             console.error(`Quantity exceeds maximum limit for ${item.name}`);
             alert(`You cannot order more than 10 ${item.name} at once.`);
         }
     });
 
-    if (formData.size > 0) {
-        fetch('/submit-order', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.text();
-            } else {
-                throw new Error('Failed to submit order');
-            }
-        })
-        .then(data => {
-            console.log(data);
-            alert('Your order has been submitted!');
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to submit order. Please try again.');
-        });
+    if (orderedItems.length > 0) {
+        console.log('Order submitted:', orderedItems);
+        alert('Your order has been submitted!');
     } else {
         console.error('No items selected for order');
         alert('Please select at least one item before submitting your order.');
     }
 }
+
+window.onload = () => {
+    displayMenuItems();
+    const form = document.getElementById('order-form');
+    form.addEventListener('submit', handleSubmit);
+};
