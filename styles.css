@@ -197,45 +197,28 @@ button[type="submit"]:hover {
     background-color: #45a049;
 }
 
+
 .gallery-container {
-    max-width: 1000px;
-    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
     padding: 20px;
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+.gallery-column {
+    flex: 1;
+    max-width: 300px;
 }
 
 .gallery-item {
-    overflow: hidden;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .gallery-item img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
-    transition: transform 0.3s ease-in-out;
-}
-
-.gallery-item img:hover {
-    transform: scale(1.1);
-}
-.gallery-container {
-    display: flex;
-    justify-content: center;
-}
-
-.gallery-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 20px; 
-}
-
-.gallery-item {
-    margin-bottom: 20px; 
+    display: block;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
