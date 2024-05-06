@@ -31,6 +31,7 @@ function handleSubmit(event) {
     event.preventDefault();
 
     let formData = new FormData();
+    let hasSelectedItems = false;
 
     menuItems.forEach(item => {
         const quantityInput = document.getElementById(`${item.name.replace(/\s+/g, '-').toLowerCase()}-quantity`);
@@ -38,13 +39,14 @@ function handleSubmit(event) {
 
         if (quantity > 0 && quantity <= 10) {
             formData.append(item.name, quantity);
+            hasSelectedItems = true;
         } else if (quantity > 10) {
             console.error(`Quantity exceeds maximum limit for ${item.name}`);
             alert(`You cannot order more than 10 ${item.name} at once.`);
         }
     });
 
-    if (formData.size > 0) {
+    if (hasSelectedItems) {
         fetch('/submit-order', {
             method: 'POST',
             body: formData
