@@ -64,7 +64,7 @@ function handleSubmit(event) {
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Failed to submit order. Please try again.');
+            alert('Please try again.');
         });
     } else {
         console.error('No items selected for order');
